@@ -1,0 +1,114 @@
+Aprovados = 0
+Reprovados = 0
+Alunos = 0
+status = ('Aprovado', 'Reprovado', 'Reprovado direto', 'Prova de recuperação')
+
+for index in range(100):
+    while True:
+        try:
+            entrada = input('Nota da AOP1 (0.0 - 1.0) ou "sair" para interromper: ')
+            if entrada.lower() == 'sair':
+                print("Interrupção solicitada pelo usuário.")
+                break
+            Aop1 = float(entrada)
+            if 0 <= Aop1 <= 1:
+                break
+            else:
+                print('Erro de inserção. Nota da AOP1 deve estar entre 0.0 e 1.0.')
+        except ValueError:
+            print('Erro de inserção. Por favor, insira um número válido.')
+
+    if entrada.lower() == 'sair':
+        break
+
+    while True:
+        try:
+            entrada = input('Nota da AOP2 (0.0 - 2.0) ou "sair" para interromper: ')
+            if entrada.lower() == 'sair':
+                print("Interrupção solicitada pelo usuário.")
+                break
+            Aop2 = float(entrada)
+            if 0 <= Aop2 <= 2:
+                break
+            else:
+                print('Erro de inserção. Nota da AOP2 deve estar entre 0.0 e 2.0.')
+        except ValueError:
+            print('Erro de inserção. Por favor, insira um número válido.')
+
+    if entrada.lower() == 'sair':
+        break
+
+    while True:
+        try:
+            entrada = input('Nota da AOP3 (0.0 - 1.0) ou "sair" para interromper: ')
+            if entrada.lower() == 'sair':
+                print("Interrupção solicitada pelo usuário.")
+                break
+            Aop3 = float(entrada)
+            if 0 <= Aop3 <= 1:
+                break
+            else:
+                print('Erro de inserção. Nota da AOP3 deve estar entre 0.0 e 1.0.')
+        except ValueError:
+            print('Erro de inserção. Por favor, insira um número válido.')
+
+    if entrada.lower() == 'sair':
+        break
+
+    while True:
+        try:
+            entrada = input('Nota da Prova Regular (0.0 - 6.0) ou "sair" para interromper: ')
+            if entrada.lower() == 'sair':
+                print("Interrupção solicitada pelo usuário.")
+                break
+            Pr = float(entrada)
+            if 0 <= Pr <= 6:
+                break
+            else:
+                print('Erro de inserção. Nota da Prova Regular deve estar entre 0.0 e 6.0.')
+        except ValueError:
+            print('Erro de inserção. Por favor, insira um número válido.')
+
+    if entrada.lower() == 'sair':
+        break
+
+    SM = (Aop1 + Aop2 + Aop3 + Pr)
+
+    if SM >= 7:
+        Aprovados += 1
+        Alunos += 1
+        print(f'{index+1}° Aluno: {status[0]}! Sua nota final foi: {SM}')
+    elif 3 <= SM < 7:
+        while True:
+            try:
+                entrada = input('Nota da recuperação (0.0 - 10.0) ou "sair" para interromper: ')
+                if entrada.lower() == 'sair':
+                    print("Interrupção solicitada pelo usuário.")
+                    break
+                Rec = float(entrada)
+                if 0 <= Rec <= 10:
+                    break
+                else:
+                    print('Erro de inserção. Nota da recuperação deve estar entre 0.0 e 10.0.')
+            except ValueError:
+                print('Erro de inserção. Por favor, insira um número válido.')
+
+        if entrada.lower() == 'sair':
+            break
+
+        if (SM + Rec) / 2 >= 5:
+            print(f'{index+1}° Aluno: {status[3]}')
+            Aprovados += 1
+            Alunos += 1
+            print(f'{status[0]}! Sua média final foi: {(SM + Rec) / 2}')
+        else:
+            print(f'{index+1}° Aluno: {status[3]}')
+            Reprovados += 1
+            Alunos += 1
+            print(f'{status[1]}! Sua média final foi: {(SM + Rec) / 2}')
+    else:
+        Reprovados += 1
+        Alunos += 1
+        print(f'{index+1}° Aluno: {status[2]}! Sua nota final foi: {SM}')
+if Alunos>0:
+    print(f'Total de alunos: {Alunos}, Aprovados: {(Aprovados/Alunos)*100:.1f}%, Reprovados: {(Reprovados/Alunos)*100:.1f}%')
